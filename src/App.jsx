@@ -18,49 +18,44 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: {name: "Bob"},
-      messages: [
-        {
-          id: 1,
-          username: "Bob",
-          content: "Has anyone seen my marbles?",
-        },
-        {
-          id: 2,
-          username: "Anonymous",
-          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
-      ]
+      messages: []
     }
+    this.socket = new WebSocket("ws://localhost:3001")
+
   }
 
   componentDidMount() {
     console.log("componentDidMount <App />");
-    setTimeout(() => {
-      console.log("Simulating incoming message");
-      // Add a new message to the list of messages in the data store
-      const newMessage = {id: 3, username: "Michelle", content: "Hello there!"};
-      const messages = this.state.messages.concat(newMessage)
-      // Update the state of the app component.
-      // Calling setState will trigger a call to render() in App and all child components.
-      this.setState({messages: messages})
-    }, 3000);
+    this.socket.onopen = () => {
+      console.log("connected to the server");
+    }
+    this.socket.onmessage = event => {
+      const message = JSON.parse(event.data)
+      this.setState({messages: [...this.state.messages, message]})
+    }
   }
   
-  msgHandler(content){
+  addMessage(content){
     const newMsg = {
-      id: Date.now(),
       username: this.state.currentUser.name,
       content: content
   }
-    this.setState({messages: this.state.messages.concat(newMsg)})
+      this.socket.send(JSON.stringify(newMsg))
   }
 
+  addUser(user){
+    this.setState({currentUser: {name : user}})
+  }
+    
+
   render() {
+    console.log(this.state.messages);
     return (
       <div>
         <Navbar />
         <MessageList messages={this.state.messages}/>
-        <Chatbar name={this.state.currentUser.name} setMsg={this.msgHandler.bind(this)}/>
+        <Chatbar name={this.state.currentUser.name} setMsg={this.addMessage.bind(this)}
+                 setUser={this.addUser.bind(this)}/>
       </div>
     );
   }
