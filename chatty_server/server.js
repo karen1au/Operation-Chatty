@@ -24,14 +24,13 @@ wss.broadcast = function broadcast(data) {
     });
 }
 
-let userColor = {};
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
   console.log('Client connected');
-  console.log('client:', wss.clients)
   console.log( `${wss.clients.size} users online`)
+  const userColor = randomColour().hexString()
   wss.broadcast(JSON.stringify(wss.clients.size))
 
   ws.on('message', function incoming(data) {
@@ -43,7 +42,8 @@ wss.on('connection', (ws) => {
             id: uuid(),
             type: "incomingMessage",
             username: result.username,
-            content: result.content
+            content: result.content,
+            color: userColor
           };
           console.log(`User ${result.username} said ${result.content}`)
           wss.broadcast(JSON.stringify(broadcastMessage));

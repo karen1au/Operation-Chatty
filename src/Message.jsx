@@ -13,12 +13,11 @@ class Message extends Component {
                 finalContent =
                 <span className="message-content">{content}</span>
             }
+            console.log('color is ',this.props)
         return(
             this.props.messages.username?
                 <div className="message">
-                    <span className="message-username">{this.props.messages.username}</span>
-                    {/* <span className="message-content">{this.props.messages.content.replace(regex,'<img src="$&"/>')}</span> */}
-                    {/* <img src={this.props.messages.content.match(regex)}/> */}
+                    <span className="message-username" style={{color: this.props.messages.color}}>{this.props.messages.username}</span>
                     {finalContent}
                 </div> :
                 <div className="message system">
