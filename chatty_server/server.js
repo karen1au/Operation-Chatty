@@ -28,6 +28,8 @@ wss.broadcast = function broadcast(data) {
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
   console.log('Client connected');
+  console.log( `${wss.clients.size} users online`)
+  wss.broadcast(JSON.stringify(wss.clients.size))
 
   ws.on('message', function incoming(data) {
     const result = JSON.parse(data)
@@ -49,7 +51,7 @@ wss.on('connection', (ws) => {
               type: "incomingNotification",
               content: result.content
           };
-          console.log(`Noti: ${result.username} did something`)
+          console.log(`Noti: someone did sth`)
           wss.broadcast(JSON.stringify(broadcastNoti));
           break;
         default:
@@ -57,5 +59,8 @@ wss.on('connection', (ws) => {
     
   });
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
-  ws.on('close', () => console.log('Client disconnected'));
+  ws.on('close', () => {
+      console.log('Client disconnected');
+      wss.broadcast(JSON.stringify(wss.clients.size));
+  });
 });

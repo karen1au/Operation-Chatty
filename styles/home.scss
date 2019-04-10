@@ -5,7 +5,7 @@
 body {
   background: white;
   background-image: url("https://www.onlygfx.com/wp-content/uploads/2015/11/simple-old-paper-1.jpg");
-  max-height: 1000px;
+  background-size: cover;
   color: black;
   font-family: 'Special Elite', cursive;;
   font-size: 16px;
@@ -88,4 +88,11 @@ body {
   line-height: 60px;
   padding: 0 10px;
   text-decoration: none;
+}
+
+.navbar span {
+  float: right;
+  color: white;
+  line-height: 60px;
+  padding: 0 10px;
 }

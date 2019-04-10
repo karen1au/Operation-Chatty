@@ -3,15 +3,14 @@ import React, {Component} from 'react';
 class Message extends Component {
     render(){
         return(
-            <main className="messages">
+            this.props.messages.username?
                 <div className="message">
                     <span className="message-username">{this.props.messages.username}</span>
                     <span className="message-content">{this.props.messages.content}</span>
-                </div>
+                </div> :
                 <div className="message system">
-                    {/* Anonymous1 changed their name to nomnom. */}
+                    {!this.props.messages.id ? this.props.messages.content : ""}
                 </div>
-            </main>
         )
     }
 }

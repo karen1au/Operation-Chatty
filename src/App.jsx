@@ -7,6 +7,7 @@ class Navbar extends Component {
     return (
     <nav className="navbar">
       <a href="/" className="navbar-brand">Operation Chatty</a>
+      <span>{this.props.userNum} agents online</span>
     </nav>
     )
   }
@@ -17,8 +18,10 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentUser: {name: "Bob"},
+      currentUser: {name: "anonymous"},
       messages: [],
+      active: ""
+      // notifications: []
     }
 
   }
@@ -29,18 +32,21 @@ class App extends Component {
     this.socket.onopen = () => console.log("connected to the server");
     this.socket.onmessage = event => {
       const message = JSON.parse(event.data)
-      switch(message.type) {
-        case "incomingMessage":
-          // handle incoming message
-          break;
-        case "incomingNotification":
-          // handle incoming notification
-          break;
-        default:
-          // show an error in the console if the message type is unknown
-          throw new Error("Unknown event type " + data.type);
-      }
-      this.setState({messages: [...this.state.messages, message]})
+      // switch(message.type) {
+      //   case "incomingMessage":
+        if (message.type){
+          this.setState({messages: [...this.state.messages, message]});
+        } else {
+          this.setState({active: message})
+        }
+      //     break;
+      //   case "incomingNotification":
+      //     this.setState({notifications: [...this.state.notifications, message]});
+      //     break;
+      //   default:
+      //     // show an error in the console if the message type is unknown
+      //     throw new Error("Unknown event type " + message.type);
+      // }
     }
   }
   
@@ -69,7 +75,7 @@ class App extends Component {
     console.log('check',this.state.messages);
     return (
       <div>
-        <Navbar />
+        <Navbar userNum={this.state.active}/>
         <MessageList messages={this.state.messages}/>
         <Chatbar name={this.state.currentUser.name} setMsg={this.addMessage.bind(this)}
                  setUser={this.addUser.bind(this)}/>
