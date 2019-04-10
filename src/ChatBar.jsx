@@ -8,7 +8,7 @@ class Chatbar extends Component {
         }
     }
     submitUser(e){
-        if(e.key === 'Enter' && !e.shiftKey && e.target.value.length > 0){
+        if(e.key === 'Enter' && !e.shiftKey && e.target.value.length > 0 && e.target.value !== this.props.name){
             this.props.setUser(e.target.value)
         }
     }
@@ -17,7 +17,7 @@ class Chatbar extends Component {
         return(
             <footer className="chatbar">
                 <input className="chatbar-username" placeholder="Your Name (Optional)" 
-                    defaultValue={this.props.name}
+                    defaultValue={`Agent ${this.props.name}`}
                     onKeyPress={this.submitUser.bind(this)}/>
                 <input className="chatbar-message" 
                     placeholder="Type a message and hit ENTER" 
