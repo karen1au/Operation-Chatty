@@ -72,7 +72,7 @@ class App extends Component {
     
 
   render() {
-    console.log('check',this.state.messages);
+    console.log('check',this.state.currentUser);
     return (
       <div>
         <Navbar userNum={this.state.active}/>
