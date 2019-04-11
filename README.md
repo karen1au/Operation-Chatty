@@ -1,45 +1,47 @@
-React Boilerplate
+Operation Chatty
 =====================
+> 🕵️: .-- . .-.. -.-. --- -- .
 
-A minimal and light dev environment for ReactJS.
+A real-time chatroom buildt with ReactJS and WebSocket ~~(for agents).
 
-### Usage
+## What does it do?
+!["monitor number of user"](https://github.com/karen1au/chatty-app/blob/master/doc/online-user.gif?raw=true)
 
-Clone the boilerplate and create your own git repo.
+Not only you can chat with other users, you can also monitor the number of users that are currently online.
+Each user is assigned a different colour.
 
-```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
-```
+!["change username"](https://github.com/karen1au/chatty-app/blob/master/doc/change-name.gif?raw=true)
 
-Install the dependencies and start the server.
+Feel free to change your username (as an agent we don't stick with only one name!) while keeping your colour.
+To keep up our professionalism, no matter what your name is, we add the prefix Agent to everyone.
 
-```
-npm install
-npm start
-open http://localhost:3000
-```
+!["add image"](https://github.com/karen1au/chatty-app/blob/master/doc/add-image.gif?raw=true)
 
-### Static Files
+Sometimes words are cheap...we need _images_ ! Insert any url ends with .png/.gif/.jpg to get your image showing.
 
-You can store static files like images, fonts, etc in the `build` folder.
+#### Enjoy & 📇... - .- .-. - / -.-. .... .- - - .. -. --.
 
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
+## Getting Started
 
-### Linting
-
-This boilerplate project includes React ESLint configuration.
-
-```
-npm run lint
-```
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the `npm install` command.
+3. Start the web server using the `npm start` command. The app will be served at <http://localhost:3000/>.
+4. Go to <http://localhost:3000/> in your browser.
 
 ### Dependencies
 
 * React
 * Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
+* babel-core
+* babel-preset-es2015
+* css-loader
+* node-sass
+* sass-loader
+* style-loader
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+* express
+* random-color
+* uuid
+* websocket
+* ws
