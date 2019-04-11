@@ -2,7 +2,7 @@ Operation Chatty
 =====================
 > 🕵️: .-- . .-.. -.-. --- -- .
 
-A real-time chatroom buildt with ReactJS and WebSocket ~~(for agents).
+A real-time chatroom buildt with ReactJS and WebSocket ~~(for agents)~~.
 
 ## What does it do?
 !["monitor number of user"](https://github.com/karen1au/chatty-app/blob/master/doc/online-user.gif?raw=true)
