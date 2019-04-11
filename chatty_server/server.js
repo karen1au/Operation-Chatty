@@ -40,7 +40,7 @@ wss.on('connection', (ws) => {
           const broadcastMessage = {
             id: uuid(),
             type: "incomingMessage",
-            username: result.username,
+            username: 'Agent '+result.username,
             content: result.content,
             color: userColor
           };

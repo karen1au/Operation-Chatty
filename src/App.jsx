@@ -6,7 +6,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <a href="/" className="navbar-brand">Operation Chatty -.-. .... .- - - -.--</a>
+        <a href="/" className="navbar-brand">Operation Chatty .-- . .-.. -.-. --- -- .</a>
         <span>{this.props.userNum} agents online</span>
       </nav>
       )
