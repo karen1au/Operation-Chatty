@@ -35,7 +35,6 @@ wss.on('connection', (ws) => {
 
   ws.on('message', function incoming(data) {
     const result = JSON.parse(data)
-    // console.log(result);
     switch (result.type) {
         case 'postMessage':
           const broadcastMessage = {

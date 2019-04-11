@@ -17,11 +17,11 @@ class Chatbar extends Component {
         return(
             <footer className="chatbar">
                 <input className="chatbar-username" placeholder="Your Name (Optional)" 
-                    defaultValue={`Agent ${this.props.name}`}
-                    onKeyPress={this.submitUser.bind(this)}/>
+                       defaultValue={`Agent ${this.props.name}`}
+                       onKeyPress={this.submitUser.bind(this)}/>
                 <input className="chatbar-message" 
-                    placeholder="Type a message and hit ENTER" 
-                    onKeyPress={this.submitComment.bind(this)} />
+                       placeholder="Type a message and hit ENTER" 
+                       onKeyPress={this.submitComment.bind(this)} />
             </footer>
         )
     }
